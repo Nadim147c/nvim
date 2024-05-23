@@ -1,8 +1,45 @@
 return {
     {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("catppuccin").setup {
+                compile_path = vim.fn.stdpath "cache" .. "/catppuccin",
+                flavor = "mocha",
+                transparent_background = vim.g.transparent_enabled or false,
+                term_colors = true,
+                integrations = {
+                    cmp = true,
+                    gitsigns = true,
+                    nvimtree = true,
+                    treesitter = true,
+                    notify = true,
+                    mini = { enabled = true, indentscope_color = "" },
+                },
+            }
+        end,
+    },
+
+    {
+        "xiyaowong/transparent.nvim",
+        lazy = false,
+        config = function()
+            require("transparent").setup { extra_groups = { "NormalFloat", "NvimTreeNormal" } }
+            require("transparent").clear_prefix "lualine"
+            require("transparent").clear_prefix "nvim-tree"
+        end,
+    },
+
+    {
         "nvim-tree/nvim-tree.lua",
         lazy = false,
         dependencies = { "nvim-tree/nvim-web-devicons" },
+        init = function()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+        end,
         config = function(_, opts)
             require("nvim-tree").setup(opts)
             vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree toggle window" })
@@ -61,6 +98,7 @@ return {
             }
         end,
     },
+
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -69,11 +107,12 @@ return {
             vim.o.timeoutlen = 300
         end,
         config = function()
-            vim.keymap.set("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })
+            vim.keymap.set("n", "<leader>wK", "<CMD> WhichKey <CR>", { desc = "whichkey all keymaps" })
             vim.keymap.set("n", "<leader>wk", function()
                 vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
             end, { desc = "whichkey query lookup" })
             local wk = require "which-key"
+
             wk.register({}, {
                 mode = "n",
                 prefix = "<leader>",

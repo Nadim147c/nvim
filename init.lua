@@ -1,8 +1,10 @@
 vim.g.mapleader = " "
+vim.o.laststatus = 3
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    print "Installing lazy.nvim plugin managers"
     vim.fn.system {
         "git",
         "clone",
@@ -17,47 +19,7 @@ local lazy_config = require "configs.lazy"
 
 -- load plugins
 ---@diagnostic disable-next-line: different-requires
-require("lazy").setup({
-    {
-        {
-            "catppuccin/nvim",
-            name = "catppuccin",
-            lazy = false,
-            priority = 1000,
-            config = function()
-                vim.cmd.colorscheme "catppuccin"
-                require("catppuccin").setup {
-                    compile_path = vim.fn.stdpath "cache" .. "/catppuccin",
-                    flavor = "mocha",
-                    transparent_background = vim.g.transparent_enabled or false,
-                    term_colors = true,
-                    integrations = {
-                        cmp = true,
-                        gitsigns = true,
-                        nvimtree = true,
-                        treesitter = true,
-                        notify = true,
-                        mini = {
-                            enabled = true,
-                            indentscope_color = "",
-                        },
-                    },
-                }
-            end,
-        },
-
-        {
-            "xiyaowong/transparent.nvim",
-            lazy = false,
-            config = function()
-                require("transparent").setup { extra_groups = { "NormalFloat", "NvimTreeNormal" } }
-                require("transparent").clear_prefix "lualine"
-                require("transparent").clear_prefix "nvim-tree"
-            end,
-        },
-    },
-    { import = "plugins" },
-}, lazy_config)
+require("lazy").setup({ import = "plugins" }, lazy_config)
 
 require "options"
 require "custom"

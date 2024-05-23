@@ -1,3 +1,5 @@
+vim.cmd.colorscheme "catppuccin"
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -19,4 +21,4 @@ vim.opt.undofile = true
 
 vim.opt.colorcolumn = "100"
 
-vim.o.laststatus = 3
+vim.opt.termguicolors = true
