@@ -1,5 +1,9 @@
 vim.cmd.colorscheme "catppuccin"
 
+if vim.g.transparent_enabled == nil then
+    vim.g.transparent_enabled = true
+end
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 

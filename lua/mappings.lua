@@ -15,6 +15,10 @@ vim.keymap.set("n", "<leader>sr", ":%s/", { desc = "Search and replace for this 
 
 vim.keymap.set({ "n", "v" }, "<leader>ls", "<CMD> source % <CR>", { desc = "Reload the current lua file" })
 
+-- Lazy keymaps
+vim.keymap.set({ "n", "v" }, "<leader>lR", ":Lazy reload", { desc = "Reload a lazy plugin" })
+vim.keymap.set({ "n", "v" }, "<leader>lS", ":Lazy sync", { desc = "Sync all lazy plugin" })
+
 -- Tabufine
 -- local tabufline = require("nvchad.tabufline")
 -- vim.keymap.set("n", "<tab>", function() tabufline.next() end, { desc = "Buffer goto next" })

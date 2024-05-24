@@ -26,9 +26,10 @@ return {
         "xiyaowong/transparent.nvim",
         lazy = false,
         config = function()
-            require("transparent").setup { extra_groups = { "NormalFloat", "NvimTreeNormal" } }
-            require("transparent").clear_prefix "lualine"
-            require("transparent").clear_prefix "nvim-tree"
+            local transparent = require "transparent"
+            transparent.setup { extra_groups = { "NormalFloat", "NvimTreeNormal" } }
+            transparent.clear_prefix "lualine"
+            transparent.clear_prefix "nvim-tree"
         end,
     },
 
@@ -43,6 +44,37 @@ return {
         config = function(_, opts)
             require("nvim-tree").setup(opts)
             vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree toggle window" })
+        end,
+    },
+
+    {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        event = "VeryLazy",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        config = function()
+            local bufferline = require "bufferline"
+
+            vim.keymap.set("n", "<leader>x", function()
+                bufferline.unpin_and_close()
+            end, { desc = "Close current buffer" })
+            vim.keymap.set("n", "<C-H>", function()
+                bufferline.cycle(1)
+            end, { desc = "Cycle on buffer list" })
+
+            bufferline.setup {
+                options = {
+                    diagnostics = "nvim_lsp",
+                    offsets = {
+                        {
+                            filetype = "NvimTree",
+                            text = "Nvim Tree",
+                            highlight = "Directory",
+                            text_align = "left",
+                        },
+                    },
+                },
+            }
         end,
     },
 
