@@ -19,6 +19,12 @@ return {
                 liquid = { { "prettierd", "prettier" } },
                 lua = { "stylua" },
                 python = { "isort", "black" },
+                zsh = { "shfmt" },
+                bash = { "shfmt" },
+                sh = { "shfmt" },
+            },
+            formatters = {
+                shfmt = { extra_args = { "-i", "2", "-ci", "-bn" } },
             },
             format_on_save = {
                 lsp_fallback = true,
