@@ -31,7 +31,7 @@ return {
         },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            require "configs.lsp"
+            require "configs.lsp.configs"
         end,
     },
 }

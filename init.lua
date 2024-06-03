@@ -1,3 +1,4 @@
+vim.g.config = vim.fn.stdpath "config"
 vim.g.mapleader = " "
 vim.o.laststatus = 3
 
@@ -14,6 +15,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
         lazypath,
     }
 end
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 local lazy_config = require "configs.lazy"
 
@@ -23,7 +25,4 @@ require("lazy").setup({ import = "plugins" }, lazy_config)
 
 require "options"
 require "custom"
-
-vim.schedule(function()
-    require "mappings"
-end)
+require "mappings"

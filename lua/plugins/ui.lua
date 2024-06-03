@@ -41,8 +41,8 @@ return {
             vim.g.loaded_netrw = 1
             vim.g.loaded_netrwPlugin = 1
         end,
-        config = function(_, opts)
-            require("nvim-tree").setup(opts)
+        config = function()
+            require("nvim-tree").setup(require "configs.nvimtree")
             vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree toggle window" })
         end,
     },
@@ -58,8 +58,12 @@ return {
             vim.keymap.set("n", "<leader>x", function()
                 bufferline.unpin_and_close()
             end, { desc = "Close current buffer" })
-            vim.keymap.set("n", "<C-H>", function()
+            vim.keymap.set("n", "<tab>", function()
                 bufferline.cycle(1)
+            end, { desc = "Cycle on buffer list" })
+
+            vim.keymap.set("n", "<s-tab>", function()
+                bufferline.cycle(-1)
             end, { desc = "Cycle on buffer list" })
 
             bufferline.setup {

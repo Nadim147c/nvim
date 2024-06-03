@@ -1,4 +1,27 @@
-return function(_, bufnr)
+local M = {}
+
+M.capabilities = require("cmp_nvim_lsp").default_capabilities()
+M.capabilities.textDocument.completion.completionItem = {
+    documentationFormat = { "markdown", "plaintext" },
+    snippetSupport = true,
+    preselectSupport = true,
+    insertReplaceSupport = true,
+    labelDetailsSupport = true,
+    deprecatedSupport = true,
+    commitCharactersSupport = true,
+    tagSupport = { valueSet = { 1 } },
+    resolveSupport = {
+        properties = { "documentation", "detail", "additionalTextEdits" },
+    },
+}
+
+M.on_init = function(client, _)
+    if client.supports_method "textDocument/semanticTokens" then
+        client.server_capabilities.semanticTokensProvider = nil
+    end
+end
+
+M.on_attach = function(_, bufnr)
     local function opts(desc)
         return { buffer = bufnr, desc = "LSP " .. desc }
     end
@@ -23,9 +46,6 @@ return function(_, bufnr)
 
     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts "Show references")
-
-    -- setup signature popup
-    -- if conf.signature and client.server_capabilities.signatureHelpProvider then
-    --   require("nvchad.lsp.signature").setup(client, bufnr)
-    -- end
 end
+
+return M
