@@ -2,7 +2,6 @@ return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     event = "VimEnter",
-    cmd = "Telescope",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
@@ -11,10 +10,10 @@ return {
     },
     config = function()
         ---@param key string
-        ---@param func function
+        ---@param func any
         ---@param desc string
-        local function map(key, func, desc)
-            vim.keymap.set("n", "<leader>f" .. key, func, { desc = "Telescope " .. desc })
+        local function map(key, action, desc)
+            vim.keymap.set("n", "<leader>f" .. key, action, { desc = "Telescope " .. desc })
         end
 
         local builtins = require "telescope.builtin"

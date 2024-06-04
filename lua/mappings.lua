@@ -18,13 +18,3 @@ vim.keymap.set({ "n", "v" }, "<leader>ls", "<CMD> source % <CR>", { desc = "Relo
 -- Lazy keymaps
 vim.keymap.set({ "n", "v" }, "<leader>lR", ":Lazy reload", { desc = "Reload a lazy plugin" })
 vim.keymap.set({ "n", "v" }, "<leader>lS", ":Lazy sync", { desc = "Sync all lazy plugin" })
-
--- Tabufine
--- local tabufline = require("nvchad.tabufline")
--- vim.keymap.set("n", "<tab>", function() tabufline.next() end, { desc = "Buffer goto next" })
--- vim.keymap.set("n", "<S-tab>", function() tabufline.prev() end, { desc = "Buffer goto prev" })
--- vim.keymap.set("n", "<leader>x", function() tabufline.close_buffer() end, { desc = "Buffer close" })
-
--- Comments
-
--- whichkey

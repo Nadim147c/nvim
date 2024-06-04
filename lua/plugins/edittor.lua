@@ -37,6 +37,8 @@ return {
         end,
     },
 
+    "tpope/vim-sleuth",
+
     {
         "kylechui/nvim-surround",
         event = "VeryLazy",

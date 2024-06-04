@@ -4,10 +4,11 @@ return {
         dependencies = {
             {
                 "williamboman/mason.nvim",
+                lazy = false,
+                config = true,
                 opts = function()
                     return require "configs.mason"
                 end,
-                config = true,
             },
             "williamboman/mason-lspconfig.nvim",
             { "j-hui/fidget.nvim", opts = {} },
