@@ -10,32 +10,39 @@ return {
     },
     config = function()
         ---@param key string
-        ---@param func any
+        ---@param action string|function
         ---@param desc string
         local function map(key, action, desc)
             vim.keymap.set("n", "<leader>f" .. key, action, { desc = "Telescope " .. desc })
         end
 
-        local builtins = require "telescope.builtin"
+        local tb = require "telescope.builtin"
+
+        local function find_config()
+            tb.find_files { cwd = vim.fn.stdpath "config" }
+        end
+        local function find_all()
+            tb.find_files { follow = true, no_ignore = true, hidden = true }
+        end
 
         --- File & Buffer Search
-        map("c", builtins.find_files { cwd = vim.fn.stdpath "config" }, "find config files")
-        map("a", builtins.find_files { follow = true, no_ignore = true, hidden = true }, "find all files")
-        map("f", builtins.find_files, "find files")
-        map("o", builtins.oldfiles, "find recently opened files")
-        map("b", builtins.buffers, "find opened buffers")
+        map("c", find_config, "find config files")
+        map("a", find_all, "find all files")
+        map("f", tb.find_files, "find files")
+        map("o", tb.oldfiles, "find recently opened files")
+        map("b", tb.buffers, "find opened buffers")
 
         -- Content Search
-        map("w", builtins.live_grep, "live grep")
-        map("z", builtins.current_buffer_fuzzy_find, "find in current buffer")
+        map("w", tb.live_grep, "live grep")
+        map("z", tb.current_buffer_fuzzy_find, "find in current buffer")
 
         -- GIT Search
-        map("gc", builtins.git_commits, "git commits")
-        map("gb", builtins.git_branches, "git branch")
-        map("gf", builtins.git_files, "git files")
+        map("gc", tb.git_commits, "git commits")
+        map("gb", tb.git_branches, "git branch")
+        map("gf", tb.git_files, "git files")
 
         -- Random
-        map("h", builtins.help_tags, "help page")
+        map("h", tb.help_tags, "help page")
 
         require("telescope").load_extension "ui-select"
         require("telescope").load_extension "fzf"

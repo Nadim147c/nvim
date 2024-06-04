@@ -10,6 +10,7 @@ return {
         "f3fora/cmp-spell",
         "petertriho/cmp-git",
         { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
+        "danymat/neogen",
         "saadparwaiz1/cmp_luasnip",
         "onsails/lspkind.nvim",
     },
@@ -83,6 +84,7 @@ return {
 
         local snippet_path = vim.fn.stdpath "config" .. "/lua/snippets"
         require("luasnip.loaders.from_lua").lazy_load { paths = { snippet_path } }
+        require("neogen").setup { snippet_engine = "luasnip" }
 
         vim.api.nvim_create_autocmd("InsertLeave", {
             callback = function()
