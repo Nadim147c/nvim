@@ -1,37 +1,45 @@
 return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
+    event = "VimEnter",
     cmd = "Telescope",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         "nvim-treesitter/nvim-treesitter",
     },
-    keys = {
-        -- File search
-        { "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope find files" } },
-        {
-            "<leader>fa",
-            "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-            desc = "Telescope find all files",
-        },
+    config = function()
+        ---@param key string
+        ---@param func function
+        ---@param desc string
+        local function map(key, func, desc)
+            vim.keymap.set("n", "<leader>f" .. key, func, { desc = "Telescope " .. desc })
+        end
+
+        local builtins = require "telescope.builtin"
+
+        --- File & Buffer Search
+        map("c", builtins.find_files { cwd = vim.fn.stdpath "config" }, "find config files")
+        map("a", builtins.find_files { follow = true, no_ignore = true, hidden = true }, "find all files")
+        map("f", builtins.find_files, "find files")
+        map("o", builtins.oldfiles, "find recently opened files")
+        map("b", builtins.buffers, "find opened buffers")
 
         -- Content Search
-        { "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Telescope find oldfiles" },
-        { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Telescope find buffers" },
-        { "<leader>fw", "<cmd>Telescope live_grep<CR>", desc = "Telescope live grep" },
-        { "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Telescope find in current buffer" },
+        map("w", builtins.live_grep, "live grep")
+        map("z", builtins.current_buffer_fuzzy_find, "find in current buffer")
 
-        -- Random/IDK
-        { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Telescope help page" },
-        { "<leader>fta", "<cmd>Telescope marks<CR>", desc = "Telescope find marks" },
+        -- GIT Search
+        map("gc", builtins.git_commits, "git commits")
+        map("gb", builtins.git_branches, "git branch")
+        map("gf", builtins.git_files, "git files")
 
-        -- Git
-        { "<leader>fgc", "<cmd>Telescope git_commits<CR>", desc = "Telescope git commits" },
-        { "<leader>fgs", "<cmd>Telescope git_status<CR>", desc = "Telescope git status" },
-    },
-    config = function()
+        -- Random
+        map("h", builtins.help_tags, "help page")
+
         require("telescope").load_extension "ui-select"
+        require("telescope").load_extension "fzf"
 
         require("telescope").setup {
             defaults = {
@@ -82,7 +90,15 @@ return {
                     n = { ["q"] = require("telescope.actions").close },
                 },
             },
-            extensions = { ["ui-select"] = { require("telescope.themes").get_dropdown {} } },
+            extensions = {
+                ["ui-select"] = { require("telescope.themes").get_dropdown {} },
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
+                },
+            },
         }
     end,
 }
