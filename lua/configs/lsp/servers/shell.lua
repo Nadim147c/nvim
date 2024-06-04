@@ -1,4 +1,4 @@
-local lsp_defults = require "configs.lsp.defaults"
+local lsp_defaults = require "configs.lsp.defaults"
 local lspconfig = require "lspconfig"
 
 return {
@@ -6,7 +6,7 @@ return {
         local config = {
             filetypes = { "bash", "sh", "zsh" },
         }
-        lspconfig.bashls.setup(vim.tbl_deep_extend("force", lsp_defults, config))
+        lspconfig.bashls.setup(vim.tbl_deep_extend("force", lsp_defaults, config))
     end,
 
     powershell_es = function()
@@ -15,6 +15,6 @@ return {
             bundle_path = vim.fn.stdpath "data" .. "/mason/packages/powershell-editor-services",
             settings = { powershell = { codeFormatting = { Preset = "OTBS" } } },
         }
-        lspconfig.powershell_es.setup(vim.tbl_deep_extend("force", lsp_defults, config))
+        lspconfig.powershell_es.setup(vim.tbl_deep_extend("force", lsp_defaults, config))
     end,
 }

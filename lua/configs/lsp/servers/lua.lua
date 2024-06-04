@@ -1,4 +1,4 @@
-local lsp_defults = require "configs.lsp.defaults"
+local lsp_defaults = require "configs.lsp.defaults"
 local lspconfig = require "lspconfig"
 
 return {
@@ -13,6 +13,6 @@ return {
             },
         }
 
-        lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", lsp_defults, config))
+        lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", lsp_defaults, config))
     end,
 }
