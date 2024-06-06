@@ -111,8 +111,11 @@ return {
             "smjonas/inc-rename.nvim",
         },
         config = function()
+            local notify = require "notify"
             ---@diagnostic disable-next-line: missing-fields
-            require("notify").setup { background_colour = "#000000" }
+            notify.setup { background_colour = "#000000" }
+            vim.keymap.set("n", "<leader>nd", notify.dismiss, { desc = "Dismiss all notifications" })
+
             require("inc_rename").setup {}
 
             require("noice").setup {

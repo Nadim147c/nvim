@@ -9,9 +9,13 @@ return {
         "hrsh7th/cmp-calc",
         "f3fora/cmp-spell",
         "petertriho/cmp-git",
-        { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
-        "danymat/neogen",
+        {
+            "L3MON4D3/LuaSnip",
+            build = "make install_jsregexp",
+            dependencies = { "rafamadriz/friendly-snippets" },
+        },
         "saadparwaiz1/cmp_luasnip",
+        "danymat/neogen",
         "onsails/lspkind.nvim",
     },
     config = function()
@@ -19,6 +23,7 @@ return {
 
         local cmp = require "cmp"
         local lspkind = require "lspkind"
+        local luasnip = require "luasnip"
         cmp.setup {
             snippet = {
                 expand = function(args)
@@ -44,30 +49,23 @@ return {
                 ["<C-e>"] = cmp.mapping.abort(),
                 ["<CR>"] = cmp.mapping.confirm { select = true },
                 ["<Tab>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_next_item()
-                    elseif require("luasnip").expand_or_jumpable() then
-                        vim.fn.feedkeys(
-                            vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
-                            ""
-                        )
+                    if luasnip.expand_or_jumpable() then
+                        luasnip.jump(1)
                     else
                         fallback()
                     end
                 end, { "i", "s" }),
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_prev_item()
-                    elseif require("luasnip").jumpable(-1) then
-                        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+                    if luasnip.jumpable(-1) then
+                        luasnip.jump(-1)
                     else
                         fallback()
                     end
                 end, { "i", "s" }),
             },
             sources = cmp.config.sources({
-                { name = "nvim_lsp" },
                 { name = "luasnip" },
+                { name = "nvim_lsp" },
                 { name = "nvim_lua" },
                 { name = "path" },
                 { name = "calc" },
@@ -82,9 +80,16 @@ return {
             sources = cmp.config.sources({ { name = "git" } }, { { name = "buffer" } }),
         })
 
+        require("luasnip.loaders.from_vscode").lazy_load()
         local snippet_path = vim.fn.stdpath "config" .. "/lua/snippets"
         require("luasnip.loaders.from_lua").lazy_load { paths = { snippet_path } }
-        require("neogen").setup { snippet_engine = "luasnip" }
+
+        local neogen = require "neogen"
+        neogen.setup { snippet_engine = "luasnip" }
+        vim.keymap.set("n", "<leader>nt", "<CMD> Neogen type <CR>", { desc = "Neogen generate type" })
+        vim.keymap.set("n", "<leader>nc", "<CMD> Neogen class <CR>", { desc = "Neogen generate class" })
+        vim.keymap.set("n", "<leader>nf", "<CMD> Neogen func <CR>", { desc = "Neogen generate function" })
+        vim.keymap.set("n", "<leader>nF", "<CMD> Neogen file <CR>", { desc = "Neogen generate file" })
 
         vim.api.nvim_create_autocmd("InsertLeave", {
             callback = function()
