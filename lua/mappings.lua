@@ -2,6 +2,7 @@ vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "File save" })
 
 -- Enter Command Mode with ;
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "CMD enter command mode" })
+vim.keymap.set("n", "<Esc>", "<CMD>noh<CR>", { desc = "Remove search highlight" })
 
 -- Move selected part with indent
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

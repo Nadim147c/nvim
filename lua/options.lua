@@ -4,6 +4,9 @@ if vim.g.transparent_enabled == nil then
     vim.g.transparent_enabled = true
 end
 
+vim.o.cursorlineopt = "number"
+vim.o.cursorline = true
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
