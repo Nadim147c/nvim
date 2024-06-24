@@ -19,4 +19,8 @@ return {
             require "configs.lsp.configs"
         end,
     },
+    {
+        "b0o/schemastore.nvim",
+        version = false,
+    },
 }

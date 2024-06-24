@@ -34,7 +34,7 @@ return {{
         local config = {{
             {}
         }}
-        lspconfig.{}.setup(vim.tbl_deep_extend("force", lsp_defults, config))
+        lspconfig.{}.setup(vim.tbl_deep_extend("force", lsp_defaults, config))
     end,
 ]],
             { i(1), i(2), rep(1) }

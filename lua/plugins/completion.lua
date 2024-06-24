@@ -11,7 +11,10 @@ return {
         "petertriho/cmp-git",
         {
             "L3MON4D3/LuaSnip",
-            build = "make install_jsregexp",
+            build = function()
+                local os_type = vim.fn.has "macunix" and "Mac" or vim.fn.has "unix" and "Unix-like" or "Windows"
+                return os_type ~= "Windows" and "make install_jsregexp" or nil
+            end,
             dependencies = { "rafamadriz/friendly-snippets" },
         },
         "saadparwaiz1/cmp_luasnip",
