@@ -20,7 +20,6 @@ for _, filename in ipairs(servers) do
     end
 end
 
-require("neodev").setup {}
 require("mason-lspconfig").setup {
     ensure_installed = {},
     opts = { auto_install = true },

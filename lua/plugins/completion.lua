@@ -67,6 +67,7 @@ return {
                 end, { "i", "s" }),
             },
             sources = cmp.config.sources({
+                { name = "lazydev" },
                 { name = "luasnip" },
                 { name = "nvim_lsp" },
                 { name = "nvim_lua" },
