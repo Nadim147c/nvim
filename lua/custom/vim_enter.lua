@@ -3,10 +3,8 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     desc = "Open telescope or nvim tree one vim enter",
     callback = function(data)
         if vim.fn.argv(0) == "" then
-            local is_git = vim.fn.system { "git", "rev-parse", "--is-inside-work-tree" }
-            if is_git == "true" then
-                require("telescope.builtin").git_files()
-            else
+            local success, _ = pcall(require("telescope.builtin").git_files)
+            if not success then
                 require("telescope.builtin").find_files()
             end
         end
