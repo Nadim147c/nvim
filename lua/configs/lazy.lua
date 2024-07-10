@@ -3,12 +3,7 @@ return {
     install = { colorscheme = { "catppuccin" } },
 
     ui = {
-        icons = {
-            ft = "",
-            lazy = "󰂠 ",
-            loaded = "",
-            not_loaded = "",
-        },
+        icons = { ft = "", lazy = "󰂠 ", loaded = "", not_loaded = "" },
     },
 
     performance = {

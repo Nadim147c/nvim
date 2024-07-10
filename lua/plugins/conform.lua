@@ -17,6 +17,7 @@ return {
                 markdown = { { "prettierd", "prettier" } },
                 graphql = { { "prettierd", "prettier" } },
                 liquid = { { "prettierd", "prettier" } },
+                go = { { "gofumpt", "gofmt" } },
                 lua = { "stylua" },
                 python = { "isort", "black" },
                 zsh = { "shfmt" },

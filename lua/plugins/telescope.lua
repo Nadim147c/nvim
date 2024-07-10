@@ -18,17 +18,15 @@ return {
 
         local tb = require "telescope.builtin"
 
-        local function find_config()
-            tb.find_files { cwd = vim.fn.stdpath "config" }
-        end
-        local function find_all()
-            tb.find_files { follow = true, no_ignore = true, hidden = true }
-        end
+        local function find_config() tb.find_files { cwd = vim.fn.stdpath "config" } end
+        local function find_all() tb.find_files { follow = true, no_ignore = true, hidden = true } end
+        local command = { "rg", "--files", "--hidden", "--color=never", "--glob=!.git" }
+        local function custom_find_files() tb.find_files { find_command = command } end
 
         --- File & Buffer Search
         map("c", find_config, "find config files")
         map("a", find_all, "find all files")
-        map("f", tb.find_files, "find files")
+        map("f", custom_find_files, "find files")
         map("o", tb.oldfiles, "find recently opened files")
         map("b", tb.buffers, "find opened buffers")
 
@@ -46,6 +44,7 @@ return {
 
         require("telescope").load_extension "ui-select"
         require("telescope").load_extension "fzf"
+        require("telescope").load_extension "noice"
 
         require("telescope").setup {
             defaults = {

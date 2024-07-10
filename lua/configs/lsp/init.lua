@@ -7,9 +7,7 @@ if not configs.qml6_lsp then
         default_config = {
             cmd = { "qmlls6" },
             filetypes = { "qml" },
-            root_dir = function(fname)
-                return lspconfig.util.find_git_ancestor(fname)
-            end,
+            root_dir = function(fname) return lspconfig.util.find_git_ancestor(fname) end,
             settings = {},
         },
     }
@@ -18,9 +16,7 @@ end
 lspconfig.qml6_lsp.setup { lsp_defaults }
 
 local handlers = {
-    function(server_name)
-        lspconfig[server_name].setup(lsp_defaults)
-    end,
+    function(server_name) lspconfig[server_name].setup(lsp_defaults) end,
 }
 
 -- Auto load all the server configs

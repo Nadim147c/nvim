@@ -1,4 +1,5 @@
 return {
+    { "tpope/vim-fugitive", event = "VeryLazy" },
     {
         "lewis6991/gitsigns.nvim",
         event = { "BufReadPost", "BufNewFile" },
@@ -15,9 +16,7 @@ return {
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 
-                local function opts(desc)
-                    return { buffer = bufnr, desc = "Gitsings " .. desc }
-                end
+                local function opts(desc) return { buffer = bufnr, desc = "Gitsings " .. desc } end
 
                 local map = vim.keymap.set
 
@@ -26,9 +25,5 @@ return {
                 map("n", "<leader>gb", gs.blame_line, opts "Blame Line")
             end,
         },
-    },
-    {
-        "tpope/vim-fugitive",
-        event = "VeryLazy",
     },
 }

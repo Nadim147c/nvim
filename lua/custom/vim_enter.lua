@@ -3,10 +3,8 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     desc = "Open telescope or nvim tree one vim enter",
     callback = function(data)
         if vim.fn.argv(0) == "" then
-            local success, _ = pcall(require("telescope.builtin").git_files)
-            if not success then
-                require("telescope.builtin").find_files()
-            end
+            local command = { "rg", "--files", "--hidden", "--color=never", "--glob=!.git" }
+            require("telescope.builtin").find_files { find_command = command }
         end
 
         local directory = vim.fn.isdirectory(data.file) == 1
