@@ -2,6 +2,11 @@ return {
     { "kylechui/nvim-surround", event = "VeryLazy", config = true },
     { "windwp/nvim-autopairs", event = "InsertEnter", config = true },
     {
+        "mbbill/undotree",
+        cmd = "UndotreeToggle",
+        keys = { "<leader><F5>", "<CMD> UndotreeToggle <CR>", desc = "Toggle undo tree" },
+    },
+    {
         "nmac427/guess-indent.nvim",
         event = { "BufReadPre", "BufNewFile" },
         config = function() require("guess-indent").setup { auto_cmd = true } end,
