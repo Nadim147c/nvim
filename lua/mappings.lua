@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "File save" })
+vim.keymap.set("n", "<C-s>", "<CMD>w<CR>", { desc = "Save the current buffer" })
 
 -- Enter Command Mode with ;
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "CMD enter command mode" })
@@ -19,6 +19,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 
 vim.keymap.set("x", "p", [["_dP]], { desc = "Put without losing current yank" })
 vim.keymap.set("n", "<leader>sr", ":%s/", { desc = "Search and replace for this buffer" })
+vim.keymap.set("x", "<leader>sr", ":s/", { desc = "Search and replace for this select" })
 
 vim.keymap.set({ "n", "v" }, "<leader>ls", "<CMD> source % <CR>", { desc = "Reload the current lua file" })
 

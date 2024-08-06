@@ -1,18 +1,16 @@
 return {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    init = function()
-        vim.o.timeout = true
-        vim.o.timeoutlen = 300
-    end,
     config = function()
-        function whick_lookup() vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ") end
-        vim.keymap.set("n", "<leader>wk", whick_lookup, { desc = "whichkey query lookup" })
-        vim.keymap.set("n", "<leader>wK", "<CMD> WhichKey <CR>", { desc = "whichkey all keymaps" })
-
         local wk = require "which-key"
 
-        wk.register({}, {
+        local show_key = {
+            "<leader>?",
+            function() require("which-key").show { global = true } end,
+            desc = "Buffer Local Keymaps (which-key)",
+        }
+
+        wk.add({ show_key }, {
             mode = "n",
             prefix = "<leader>",
             buffer = nil,

@@ -14,15 +14,23 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
+            "hrsh7th/cmp-emoji",
             "hrsh7th/cmp-calc",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
+            "hrsh7th/cmp-nvim-lsp-document-symbol",
             "f3fora/cmp-spell",
             "petertriho/cmp-git",
-            "hrsh7th/cmp-cmdline",
             "saadparwaiz1/cmp_luasnip",
             "onsails/lspkind.nvim",
             "L3MON4D3/LuaSnip",
+            "rafamadriz/friendly-snippets",
+            "SergioRibera/cmp-dotenv",
+            "Snikimonkd/cmp-go-pkgs",
+            "David-Kunz/cmp-npm",
+            "davidsierradz/cmp-conventionalcommits",
         },
         config = function()
             require("cmp_git").setup()
@@ -33,7 +41,10 @@ return {
 
             cmp.setup.cmdline("/", {
                 mapping = cmp.mapping.preset.cmdline(),
-                sources = { { name = "buffer" } },
+                sources = {
+                    { name = "nvim_lsp_document_symbol" },
+                    { name = "buffer" },
+                },
             })
 
             cmp.setup.cmdline(":", {
@@ -44,10 +55,23 @@ return {
                 ),
             })
 
-            cmp.setup {
-                snippet = {
-                    expand = function(args) require("luasnip").lsp_expand(args.body) end,
+            cmp.setup.filetype({ "gitcommit" }, {
+                sources = cmp.config.sources {
+                    { name = "git" },
+                    { name = "conventionalcommits" },
+                    { name = "buffer" },
                 },
+            })
+
+            cmp.setup.filetype("sh", {
+                sources = cmp.config.sources {
+                    { name = "dotenv" },
+                    { name = "cmdline" },
+                },
+            })
+
+            cmp.setup {
+                snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
                 formatting = {
                     format = lspkind.cmp_format {
                         mode = "symbol_text",
@@ -83,15 +107,21 @@ return {
                 },
                 sources = cmp.config.sources({
                     { name = "lazydev" },
-                    { name = "luasnip" },
                     { name = "nvim_lsp" },
                     { name = "nvim_lua" },
+                    { name = "luasnip" },
+                    { name = "go_pkgs" },
+                    { name = "npm", keyword_length = 4 },
+                    { name = "nvim_lsp_signature_help" },
+                    { name = "conventionalcommits" },
+                    { name = "git" },
                     { name = "path" },
-                    { name = "calc" },
-                    { name = "plugins" },
                     -- { name = "spell" },
                 }, {
                     { name = "buffer" },
+                    { name = "plugins" },
+                    { name = "calc" },
+                    { name = "emoji" },
                 }),
             }
 

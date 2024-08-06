@@ -18,8 +18,11 @@ return {
             vim.lsp.buf.execute_command(params)
         end
 
-        vim.keymap.set({ "n", "v" }, "<leader>fi", organize_imports, { desc = "Organize ts/js imports" })
         local config = {
+            on_attach = function(_, bufnr)
+                vim.keymap.set({ "n", "v" }, "<leader>fi", organize_imports, { desc = "Organize ts/js imports" })
+                lsp_defaults.on_attach(_, bufnr)
+            end,
             init_options = { preferences = { disableSuggestions = false } },
             commands = {
                 OrganizeImports = { organize_imports, description = "Organize Imports" },
