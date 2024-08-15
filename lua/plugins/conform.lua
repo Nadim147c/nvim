@@ -5,19 +5,20 @@ return {
         local conform = require "conform"
         conform.setup {
             formatters_by_ft = {
-                javascript = { { "prettierd", "prettier" } },
-                typescript = { { "prettierd", "prettier" } },
-                javascriptreact = { { "prettierd", "prettier" } },
-                typescriptreact = { { "prettierd", "prettier" } },
-                svelte = { { "prettierd", "prettier" } },
-                css = { { "prettierd", "prettier" } },
-                html = { { "prettierd", "prettier" } },
-                json = { { "prettierd", "prettier" } },
-                yaml = { { "prettierd", "prettier" } },
-                markdown = { { "prettierd", "prettier" } },
-                graphql = { { "prettierd", "prettier" } },
-                liquid = { { "prettierd", "prettier" } },
-                go = { { "gofumpt", "gofmt" } },
+                javascript = { "prettierd", "prettier", stop_after_first = true },
+                typescript = { "prettierd", "prettier", stop_after_first = true },
+                javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+                typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+                svelte = { "prettierd", "prettier", stop_after_first = true },
+                vue = { "prettierd", "prettier", stop_after_first = true },
+                css = { "prettierd", "prettier", stop_after_first = true },
+                html = { "prettierd", "prettier", stop_after_first = true },
+                json = { "prettierd", "prettier", stop_after_first = true },
+                yaml = { "prettierd", "prettier", stop_after_first = true },
+                markdown = { "prettierd", "prettier", stop_after_first = true },
+                graphql = { "prettierd", "prettier", stop_after_first = true },
+                liquid = { "prettierd", "prettier", stop_after_first = true },
+                go = { "gofumpt", "gofmt", stop_after_first = true },
                 lua = { "stylua" },
                 python = { "isort", "black" },
                 zsh = { "shfmt" },
@@ -34,7 +35,7 @@ return {
             },
         }
 
-        local function format_on_save()
+        local function conform_format()
             conform.format {
                 lsp_fallback = true,
                 async = false,
@@ -42,6 +43,6 @@ return {
             }
         end
 
-        vim.keymap.set({ "n", "v" }, "<leader>fm", format_on_save, { desc = "Format file or range (in visual mode)" })
+        vim.keymap.set({ "n", "v" }, "<leader>fm", conform_format, { desc = "Format file or range (in visual mode)" })
     end,
 }

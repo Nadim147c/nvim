@@ -27,6 +27,14 @@ return {
             return false
         end
 
+        ---@param check boolean
+        local function macro_recording(check)
+            local reg = vim.fn.reg_recording()
+            if reg == "" then return end
+            if check == true then return true end
+            return "Recording to [" .. reg .. "]"
+        end
+
         lualine.setup {
             options = {
                 component_separators = { left = "", right = "" },
@@ -49,6 +57,12 @@ return {
                         diagnostics_color = {},
                     },
                     { "harpoon2", color = { fg = colors.teal } },
+                    {
+                        macro_recording,
+                        cond = function() return macro_recording(true) end,
+                        color = { fg = colors.green },
+                        icon = " ",
+                    },
                     {
                         "lsp_progress",
                         colors = {
