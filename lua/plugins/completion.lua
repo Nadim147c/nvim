@@ -57,11 +57,12 @@ return {
 
             cmp.setup.filetype({ "gitcommit" }, {
                 sources = cmp.config.sources {
-                    { name = "git" },
                     { name = "conventionalcommits" },
+                    { name = "git" },
                     { name = "buffer" },
                 },
             })
+            require("cmp_git").setup()
 
             cmp.setup.filetype("sh", {
                 sources = cmp.config.sources {
@@ -113,7 +114,6 @@ return {
                     { name = "go_pkgs" },
                     { name = "npm", keyword_length = 4 },
                     { name = "nvim_lsp_signature_help" },
-                    { name = "conventionalcommits" },
                     { name = "git" },
                     { name = "path" },
                     -- { name = "spell" },
@@ -124,10 +124,6 @@ return {
                     { name = "emoji" },
                 }),
             }
-
-            cmp.setup.filetype("gitcommit", {
-                sources = cmp.config.sources({ { name = "git" } }, { { name = "buffer" } }),
-            })
 
             require("luasnip.loaders.from_vscode").lazy_load()
             local snippet_path = vim.fn.stdpath "config" .. "/lua/snippets"

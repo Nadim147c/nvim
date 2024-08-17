@@ -2,6 +2,9 @@ vim.cmd.colorscheme "catppuccin"
 
 if vim.g.transparent_enabled == nil then vim.g.transparent_enabled = true end
 
+vim.opt.grepprg = "rg --vimgrep -uv"
+vim.opt.grepformat = "%f:%l:%c:%m"
+
 vim.o.cursorlineopt = "number"
 vim.o.cursorline = true
 
