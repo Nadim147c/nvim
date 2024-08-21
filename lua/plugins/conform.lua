@@ -3,23 +3,40 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         local conform = require "conform"
+        local function file_exists_glob(pattern)
+            local root_dir = vim.fn.getcwd()
+
+            local full_pattern = root_dir .. "/" .. pattern
+
+            local files = vim.fn.glob(full_pattern, false, true)
+
+            return #files > 0
+        end
+
+        ---@type conform.FiletypeFormatterInternal|fun(bufnr: number):conform.FiletypeFormatterInternal
+        local prettier_formatter = { "prettierd", "prettier", stop_after_first = true }
+
+        ---@type conform.FiletypeFormatterInternal|fun(bufnr: number):conform.FiletypeFormatterInternal
+        local javascript_formatter = prettier_formatter
+        if file_exists_glob "biome.{json,jsonc}" then javascript_formatter = { "biome" } end
 
         conform.setup {
             formatters_by_ft = {
-                javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
-                typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
-                javascriptreact = { "biome", "prettierd", "prettier", stop_after_first = true },
-                typescriptreact = { "biome", "prettierd", "prettier", stop_after_first = true },
-                svelte = { "biome", "prettierd", "prettier", stop_after_first = true },
-                vue = { "biome", "prettierd", "prettier", stop_after_first = true },
-                css = { "biome", "prettierd", "prettier", stop_after_first = true },
-                html = { "biome", "prettierd", "prettier", stop_after_first = true },
-                json = { "biome", "prettierd", "prettier", stop_after_first = true },
-                jsonc = { "biome", "prettierd", "prettier", stop_after_first = true },
-                markdown = { "biome", "prettierd", "prettier", stop_after_first = true },
-                graphql = { "biome", "prettierd", "prettier", stop_after_first = true },
-                liquid = { "biome", "prettierd", "prettier", stop_after_first = true },
-                yaml = { "prettierd", "prettier", stop_after_first = true },
+                javascript = javascript_formatter,
+                typescript = javascript_formatter,
+                javascriptreact = javascript_formatter,
+                typescriptreact = javascript_formatter,
+                json = javascript_formatter,
+                jsonc = javascript_formatter,
+                -- Prettier Formatter
+                svelte = prettier_formatter,
+                css = prettier_formatter,
+                html = prettier_formatter,
+                vue = prettier_formatter,
+                markdown = prettier_formatter,
+                graphql = prettier_formatter,
+                liquid = prettier_formatter,
+                yaml = prettier_formatter,
                 go = { "gofumpt", "gofmt", stop_after_first = true },
                 lua = { "stylua" },
                 python = { "isort", "black" },
