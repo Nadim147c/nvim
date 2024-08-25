@@ -6,5 +6,8 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",
     },
-    config = true,
+    config = function()
+        vim.keymap.set("n", "m", "<CMD> Markview toggle <CR>", { desc = "Toggle markview" })
+        require("markview").setup()
+    end,
 }
