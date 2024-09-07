@@ -46,6 +46,17 @@ return {
             },
             formatters = {
                 shfmt = { extra_args = { "-i", "2", "-ci", "-bn" } },
+                biome = {
+                    args = {
+                        "check",
+                        "--write",
+                        "--linter-enabled=false",
+                        "--formatter-enabled=true",
+                        "--organize-imports-enabled=true",
+                        "--stdin-file-path",
+                        "$FILENAME",
+                    },
+                },
             },
             format_on_save = {
                 lsp_fallback = true,
