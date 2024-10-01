@@ -26,18 +26,3 @@ vim.keymap.set({ "n", "v" }, "<leader>ls", "<CMD> source % <CR>", { desc = "Relo
 -- Lazy keymaps
 vim.keymap.set({ "n", "v" }, "<leader>lR", ":Lazy reload", { desc = "Reload a lazy plugin" })
 vim.keymap.set({ "n", "v" }, "<leader>lS", ":Lazy sync", { desc = "Sync all lazy plugin" })
-
-vim.keymap.set("n", ",", "N", { desc = "go to previousa highlight" })
-vim.keymap.set("n", ".", "n", { desc = "go to next highlight" })
-
-vim.keymap.set("n", "n", "^", { desc = "go to start of the line" })
-vim.keymap.set("n", "m", "$", { desc = "go to end of the line" })
-
-vim.keymap.set("n", "dn", "d^", { desc = "delete from start of the line" })
-vim.keymap.set("n", "dm", "d$", { desc = "detete to end of the line" })
-
-vim.keymap.set("n", "yn", "y^", { desc = "yank from start of the line" })
-vim.keymap.set("n", "ym", "y$", { desc = "yank to end of the line" })
-
-vim.keymap.set("n", "vn", "v^", { desc = "select from start of the line" })
-vim.keymap.set("n", "vm", "v$", { desc = "select to end of the line" })
