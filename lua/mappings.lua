@@ -26,3 +26,5 @@ vim.keymap.set({ "n", "v" }, "<leader>ls", "<CMD> source % <CR>", { desc = "Relo
 -- Lazy keymaps
 vim.keymap.set({ "n", "v" }, "<leader>lR", ":Lazy reload", { desc = "Reload a lazy plugin" })
 vim.keymap.set({ "n", "v" }, "<leader>lS", ":Lazy sync", { desc = "Sync all lazy plugin" })
+
+vim.keymap.set("n", "<leader>u", "<CMD> UndotreeToggle <CR>", { desc = "Sync all lazy plugin" })
