@@ -5,6 +5,8 @@ if vim.g.transparent_enabled == nil then vim.g.transparent_enabled = true end
 vim.opt.grepprg = "rg --vimgrep -uv"
 vim.opt.grepformat = "%f:%l:%c:%m"
 
+vim.opt.fileformat = "unix"
+
 vim.opt.fillchars:append { eob = " " }
 
 vim.o.cursorlineopt = "number"
