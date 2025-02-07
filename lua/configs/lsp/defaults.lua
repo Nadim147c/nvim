@@ -41,7 +41,7 @@ M.on_attach = function(_, bufnr)
 
     vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
 
-    vim.keymap.set("n", "<leader>ra", function() return ":IncRename " .. vim.fn.expand "<cword>" end, { expr = true })
+    vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename, { expr = true })
 
     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts "Show references")

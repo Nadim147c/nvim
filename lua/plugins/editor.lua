@@ -1,6 +1,7 @@
 return {
     { "kylechui/nvim-surround", event = "VeryLazy", config = true },
     { "windwp/nvim-autopairs", event = "InsertEnter", config = true },
+    { "windwp/nvim-ts-autotag", event = "InsertEnter", config = true },
     {
         "mbbill/undotree",
         cmd = "UndotreeToggle",

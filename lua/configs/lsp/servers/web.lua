@@ -9,7 +9,7 @@ return {
         lspconfig.emmet_language_server.setup(vim.tbl_deep_extend("force", lsp_defaults, config))
     end,
 
-    tsserver = function()
+    ts_ls = function()
         local function organize_imports()
             local params = {
                 command = "_typescript.organizeImports",
@@ -33,6 +33,6 @@ return {
                 OrganizeImports = { organize_imports, description = "Organize Imports" },
             },
         }
-        lspconfig.tsserver.setup(vim.tbl_deep_extend("force", lsp_defaults, config))
+        lspconfig.ts_ls.setup(vim.tbl_deep_extend("force", lsp_defaults, config))
     end,
 }

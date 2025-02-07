@@ -21,7 +21,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.spelllang = "en_us"
-vim.opt.spell = true
+vim.opt.spell = false
 
 vim.opt.smartindent = true
 

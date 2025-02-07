@@ -39,10 +39,12 @@ return {
                 yaml = prettier_formatter,
                 go = { "gofumpt", "gofmt", stop_after_first = true },
                 lua = { "stylua" },
-                python = { "isort", "black" },
+                python = { "isort", "ruff_format" },
                 zsh = { "shfmt" },
                 bash = { "shfmt" },
                 sh = { "shfmt" },
+                sql = { "sql_formatter" },
+                ["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
             },
             formatters = {
                 shfmt = { extra_args = { "-i", "2", "-ci", "-bn" } },
