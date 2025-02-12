@@ -15,7 +15,7 @@ return {
 
         map("<leader>a", function() harpoon:list():add() end, "add to list")
         map("<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, "show list")
-        map("s", function() harpoon:list():next { ui_nav_wrap = true } end, "cycle trough harpoon list")
+        map("m", function() harpoon:list():next { ui_nav_wrap = true } end, "cycle trough harpoon list")
         map("1", function() harpoon:list():select(1) end, "jump to 1")
         map("2", function() harpoon:list():select(2) end, "jump to 2")
         map("3", function() harpoon:list():select(3) end, "jump to 3")

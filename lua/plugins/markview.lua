@@ -4,10 +4,13 @@ return {
     cmd = "Markview",
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons",
+        "echasnovski/mini.icons",
     },
     config = function()
-        vim.keymap.set("n", "m", "<CMD> Markview toggle <CR>", { desc = "Toggle markview" })
-        require("markview").setup()
+        vim.keymap.set("n", "<leader>m", "<CMD> Markview toggle <CR>", { desc = "Toggle markview" })
+
+        require("markview").setup {
+            preview = { icon_provider = "mini" },
+        }
     end,
 }

@@ -10,10 +10,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 
--- Move selected part with indent
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-
 -- Merge the next line with current one without moving the cursor
 vim.keymap.set("n", "J", "mzJ`z")
 
