@@ -1,10 +1,12 @@
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
-    group = vim.api.nvim_create_augroup("vim_enter_telescope_or_nvim_tree", { clear = true }),
-    desc = "Open telescope or nvim tree one vim enter",
+    group = vim.api.nvim_create_augroup("vim_enter_file_picker", { clear = true }),
+    desc = "Open snacks picker or nvim tree one vim enter",
     callback = function(data)
         if vim.fn.argv(0) == "" then
-            local command = { "rg", "--files", "--hidden", "--color=never", "--glob=!.git" }
-            require("telescope.builtin").find_files { find_command = command }
+            Snacks.picker.pick("files", {
+                cmd = "rg",
+                args = { "--files", "--hidden", "--color=never", "--glob=!.git" },
+            })
         end
 
         local directory = vim.fn.isdirectory(data.file) == 1
