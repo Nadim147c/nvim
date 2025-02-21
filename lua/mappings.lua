@@ -1,5 +1,7 @@
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>", { desc = "Save the current buffer" })
 
+vim.keymap.set("i", "<C-BS>", "<C-W>", { desc = "word delete" })
+
 -- Enter Command Mode with ;
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "CMD enter command mode" })
 vim.keymap.set("n", "<Esc>", "<CMD>noh<CR>", { desc = "Remove search highlight" })
