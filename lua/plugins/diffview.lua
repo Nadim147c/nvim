@@ -1,5 +1,5 @@
 return {
-    "sindrets/diffview.nvim",
-    event = "VeryLazy",
-    config = true,
+  "sindrets/diffview.nvim",
+  event = "VeryLazy",
+  config = true,
 }
