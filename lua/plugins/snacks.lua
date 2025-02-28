@@ -27,8 +27,9 @@ return {
     },
     bigfile = { enabled = true },
     image = {
+      enabled = false,
       formats = supported,
-      force = true,
+      force = false,
       markdown = {
         enabled = true,
         max_width = 80,
