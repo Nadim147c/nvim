@@ -36,7 +36,7 @@ return {
         max_height = 40,
       },
     },
-    dashboard = { enabled = false },
+    dashboard = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
     notifier = { enabled = true },

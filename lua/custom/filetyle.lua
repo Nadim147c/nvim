@@ -6,6 +6,7 @@ vim.filetype.add {
     [".*/ghostty/config"] = "ini",
     [".*/fontconfig/font.conf"] = "xml",
     [".*/uwsm/env.*"] = "sh",
+    [".*/.gitconfig.*"] = "gitconfig",
   },
   filename = {
     [".prettierrc"] = "yaml",
