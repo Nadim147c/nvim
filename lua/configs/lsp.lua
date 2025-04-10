@@ -1,5 +1,4 @@
 local M = {}
-
 M.capabilities = require("blink.cmp").get_lsp_capabilities()
 M.capabilities.textDocument.completion.completionItem = {
   documentationFormat = { "markdown", "plaintext" },
