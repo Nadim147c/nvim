@@ -19,6 +19,7 @@ return {
       map("B", function() dap.set_breakpoint(vim.fn.input "Breakpoint condition: ") end, "Breakpoint condition")
       map("b", function() dap.toggle_breakpoint() end, "Toggle Breakpoint")
       map("c", function() dap.continue() end, "Run/Continue")
+      vim.keymap.set("n", "C", function() dap.continue() end, { desc = "Dap Run/continue" })
       map("a", function() dap.continue { before = get_args } end, "Run with Args")
       map("C", function() dap.run_to_cursor() end, "Run to Cursor")
       map("g", function() dap.goto_() end, "Go to Line (No Execute)")

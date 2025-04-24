@@ -5,6 +5,7 @@ return {
     ft = "lua",
     opts = {
       library = {
+        "~/git/chroma.nvim",
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },

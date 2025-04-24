@@ -1,6 +1,6 @@
 local supported =
   { "png", "jpg", "jpeg", "gif", "bmp", "webp", "tiff", "heic", "avif", "mp4", "mov", "avi", "mkv", "webm" }
-local config_dir = vim.fn.stdpath "config"
+local config_dir = vim.fn.stdpath("config")
 
 return {
   "folke/snacks.nvim",
@@ -11,7 +11,9 @@ return {
     picker = {
       layout = {
         cycle = true,
-        preset = function() return vim.o.columns >= 120 and "default" or "vertical" end,
+        preset = function()
+          return vim.o.columns >= 120 and "default" or "vertical"
+        end,
       },
       matcher = {
         fuzzy = true, -- use fuzzy matching
@@ -46,13 +48,27 @@ return {
     words = { enabled = true },
   },
   keys = {
-    { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Picker: Buffers" },
+    {
+      "<leader>fb",
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = "Picker: Buffers",
+    },
     {
       "<leader>fc",
-      function() Snacks.picker.files { cwd = config_dir } end,
+      function()
+        Snacks.picker.files({ cwd = config_dir })
+      end,
       desc = "Picker: Find Config File",
     },
-    { "<leader>fn", function() Snacks.picker.files() end, desc = "Picker: Find Files" },
+    {
+      "<leader>fn",
+      function()
+        Snacks.picker.files()
+      end,
+      desc = "Picker: Find Files",
+    },
     {
       "<leader>ff",
       function()
@@ -63,21 +79,93 @@ return {
       end,
       desc = "Picker: Find Git Files",
     },
-    { "<leader>fr", function() Snacks.picker.recent() end, desc = "Picker: Recent" },
+    {
+      "<leader>fr",
+      function()
+        Snacks.picker.recent()
+      end,
+      desc = "Picker: Recent",
+    },
 
     -- Git logs
-    { "<leader>fgb", function() Snacks.picker.git_branches() end, desc = "Picker: Git Branches" },
-    { "<leader>fgl", function() Snacks.picker.git_log() end, desc = "Picker: Git Log" },
-    { "<leader>fgL", function() Snacks.picker.git_log_line() end, desc = "Picker: Git Log Line" },
-    { "<leader>fgs", function() Snacks.picker.git_status() end, desc = "Picker: Git Status" },
-    { "<leader>fgS", function() Snacks.picker.git_stash() end, desc = "Picker: Git Stash" },
-    { "<leader>fgd", function() Snacks.picker.git_diff() end, desc = "Picker: Git Diff (Hunks)" },
-    { "<leader>fgf", function() Snacks.picker.git_log_file() end, desc = "Picker: Git Log File" },
+    {
+      "<leader>fgb",
+      function()
+        Snacks.picker.git_branches()
+      end,
+      desc = "Picker: Git Branches",
+    },
+    {
+      "<leader>fgl",
+      function()
+        Snacks.picker.git_log()
+      end,
+      desc = "Picker: Git Log",
+    },
+    {
+      "<leader>fgL",
+      function()
+        Snacks.picker.git_log_line()
+      end,
+      desc = "Picker: Git Log Line",
+    },
+    {
+      "<leader>fgs",
+      function()
+        Snacks.picker.git_status()
+      end,
+      desc = "Picker: Git Status",
+    },
+    {
+      "<leader>fgS",
+      function()
+        Snacks.picker.git_stash()
+      end,
+      desc = "Picker: Git Stash",
+    },
+    {
+      "<leader>fgd",
+      function()
+        Snacks.picker.git_diff()
+      end,
+      desc = "Picker: Git Diff (Hunks)",
+    },
+    {
+      "<leader>fgf",
+      function()
+        Snacks.picker.git_log_file()
+      end,
+      desc = "Picker: Git Log File",
+    },
 
     -- Live grep
-    { "<leader>fsb", function() Snacks.picker.grep_buffers() end, desc = "Picker: Grep Open Buffers" },
-    { "<leader>fsg", function() Snacks.picker.grep() end, desc = "Picker: Grep" },
-    { "<leader>fsw", function() Snacks.picker.git_grep() end, desc = "Picker: Git grep" },
-    { "<leader>fw", function() Snacks.picker.git_grep() end, desc = "Picker: Git grep" },
+    {
+      "<leader>fsb",
+      function()
+        Snacks.picker.grep_buffers()
+      end,
+      desc = "Picker: Grep Open Buffers",
+    },
+    {
+      "<leader>fsg",
+      function()
+        Snacks.picker.grep()
+      end,
+      desc = "Picker: Grep",
+    },
+    {
+      "<leader>fsw",
+      function()
+        Snacks.picker.git_grep()
+      end,
+      desc = "Picker: Git grep",
+    },
+    {
+      "<leader>fw",
+      function()
+        Snacks.picker.git_grep()
+      end,
+      desc = "Picker: Git grep",
+    },
   },
 }

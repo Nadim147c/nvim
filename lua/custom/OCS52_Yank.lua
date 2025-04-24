@@ -25,7 +25,9 @@ local function encode_base64(data)
     --- @param x string
     --- @return string
     function(x)
-      if #x < 6 then return "" end
+      if #x < 6 then
+        return ""
+      end
       local c = 0
       for i = 1, 6 do
         c = c + (x:sub(i, i) == "1" and 2 ^ (6 - i) or 0)
@@ -48,5 +50,7 @@ end
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("OSC52_Copy", { clear = true }),
   desc = "Copy to system clipboard on yank",
-  callback = function() osc52_copy(vim.fn.getreg(vim.v.event.regname)) end,
+  callback = function()
+    osc52_copy(vim.fn.getreg(vim.v.event.regname))
+  end,
 })

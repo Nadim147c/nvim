@@ -1,5 +1,7 @@
+local m = require "configs.lsp"
 return {
-  cmd = { "nixd" },
+  capabilities = m.capabilities,
+  cmd = { "nixd", "--inlay-hints=true", "--semantic-tokens=true" },
   settings = {
     nixd = {
       nixpkgs = {

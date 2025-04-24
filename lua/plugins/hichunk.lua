@@ -2,8 +2,8 @@ return {
   "shellRaining/hlchunk.nvim",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    local colors = require("catppuccin.palettes").get_palette "mocha"
-    require("hlchunk").setup {
+    local colors = require("catppuccin.palettes").get_palette("mocha")
+    require("hlchunk").setup({
       chunk = {
         enable = true,
         style = colors.sky,
@@ -14,6 +14,6 @@ return {
         enable = true,
         chars = { "│", "¦", "┆", "┊" },
       },
-    }
+    })
   end,
 }

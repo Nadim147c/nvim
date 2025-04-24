@@ -1,13 +1,15 @@
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")
 
-if vim.g.transparent_enabled == nil then vim.g.transparent_enabled = true end
+if vim.g.transparent_enabled == nil then
+  vim.g.transparent_enabled = true
+end
 
 vim.opt.grepprg = "rg --vimgrep -uv"
 vim.opt.grepformat = "%f:%l:%c:%m"
 
 vim.opt.fileformat = "unix"
 
-vim.opt.fillchars:append { eob = " " }
+vim.opt.fillchars:append({ eob = " " })
 
 vim.o.cursorlineopt = "number"
 vim.o.cursorline = true
@@ -31,6 +33,9 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
 
+vim.opt.textwidth = 100
 vim.opt.colorcolumn = "100"
 
 vim.opt.termguicolors = true
+
+vim.diagnostic.config({ float = { border = "rounded" } })
