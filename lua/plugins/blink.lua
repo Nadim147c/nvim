@@ -29,10 +29,30 @@ return {
           ["<Tab>"] = { "snippet_forward", "fallback" },
           ["<S-Tab>"] = { "snippet_backward", "fallback" },
           cmdline = {
-            ["<Up>"] = { function() cmp.select_prev { auto_insert = true } end, "fallback" },
-            ["<C-p>"] = { function() cmp.select_prev { auto_insert = true } end, "fallback" },
-            ["<Down>"] = { function() cmp.select_next { auto_insert = true } end, "fallback" },
-            ["<C-n>"] = { function() cmp.select_next { auto_insert = true } end, "fallback" },
+            ["<Up>"] = {
+              function()
+                cmp.select_prev { auto_insert = true }
+              end,
+              "fallback",
+            },
+            ["<C-p>"] = {
+              function()
+                cmp.select_prev { auto_insert = true }
+              end,
+              "fallback",
+            },
+            ["<Down>"] = {
+              function()
+                cmp.select_next { auto_insert = true }
+              end,
+              "fallback",
+            },
+            ["<C-n>"] = {
+              function()
+                cmp.select_next { auto_insert = true }
+              end,
+              "fallback",
+            },
           },
         },
         appearance = {
