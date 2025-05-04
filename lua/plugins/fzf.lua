@@ -5,7 +5,11 @@ return {
   event = "VeryLazy",
   config = function()
     local fzf = require "fzf-lua"
-    fzf.setup { "skim" }
+    fzf.setup {
+      fzf_colors = {
+        ["gutter"] = "-1",
+      },
+    }
 
     ---@param key string
     ---@param func function

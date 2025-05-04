@@ -1,4 +1,4 @@
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme "rose-pine"
 
 if vim.g.transparent_enabled == nil then
   vim.g.transparent_enabled = true
@@ -9,7 +9,7 @@ vim.opt.grepformat = "%f:%l:%c:%m"
 
 vim.opt.fileformat = "unix"
 
-vim.opt.fillchars:append({ eob = " " })
+vim.opt.fillchars:append { eob = " " }
 
 vim.o.cursorlineopt = "number"
 vim.o.cursorline = true
@@ -38,4 +38,4 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.termguicolors = true
 
-vim.diagnostic.config({ float = { border = "rounded" } })
+vim.diagnostic.config { float = { border = "rounded" } }

@@ -10,7 +10,7 @@ local function get_hl_color(name, attr)
   elseif attr == "bg" and hl.bg then
     return string.format("#%06x", hl.bg)
   end
-  return nil
+  return hl
 end
 
 ---@param check boolean
@@ -59,15 +59,15 @@ return {
 
     -- Direct reference to highlight groups
     local highlights = {
-      statement = get_hl_color("Statement", "fg"),
-      error = get_hl_color("DiagnosticError", "fg"),
-      warn = get_hl_color("DiagnosticWarn", "fg"),
-      string = get_hl_color("String", "fg"),
-      special = get_hl_color("Special", "fg"),
-      ident = get_hl_color("Identifier", "fg"),
-      func = get_hl_color("Function", "fg"),
-      normal = get_hl_color("Normal", "fg"),
-      const = get_hl_color("Constant", "fg"),
+      statement = { fg = get_hl_color("Statement", "fg") },
+      error = { fg = get_hl_color("DiagnosticError", "fg") },
+      warn = { fg = get_hl_color("DiagnosticWarn", "fg") },
+      string = { fg = get_hl_color("String", "fg") },
+      special = { fg = get_hl_color("Special", "fg") },
+      ident = { fg = get_hl_color("Identifier", "fg") },
+      func = { fg = get_hl_color("Function", "fg") },
+      normal = { fg = get_hl_color("Normal", "fg") },
+      const = { fg = get_hl_color("Constant", "fg") },
     }
 
     lualine.setup {
@@ -85,12 +85,12 @@ return {
           {
             "mode",
             icon = "",
-            color = { fg = highlights.statement },
+            color = highlights.statement,
           },
           {
             "branch",
             icon = "󰊢",
-            color = { fg = highlights.error },
+            color = highlights.error,
           },
           {
             "diff",
@@ -101,13 +101,13 @@ return {
             symbols = { error = " ", warn = " ", info = " ", hint = "󰝶 " },
             diagnostics_color = {},
           },
-          { "harpoon2", color = { fg = highlights.special } },
+          { "harpoon2", color = highlights.special },
           {
             macro_recording,
             cond = function()
               return macro_recording(true)
             end,
-            color = { fg = highlights.string },
+            color = highlights.string,
             icon = " ",
           },
           {
@@ -135,35 +135,35 @@ return {
           {
             "filename",
             padding = { left = 0, right = 1 },
-            color = { fg = highlights.normal },
+            color = highlights.normal,
           },
           -- stylua: ignore
           {
             lsp_name,
             fmt = function(str) return "[" .. str .. "]" end,
             cond = function() return lsp_name(true) end,
-            color = { fg = highlights.warn },
+            color = highlights.warn,
           },
           {
             "encoding",
-            color = { fg = highlights.const },
+            color = highlights.const,
           },
           {
             "fileformat",
-            color = { fg = highlights.string },
+            color = highlights.string,
           },
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
-            color = { fg = highlights.string },
+            color = highlights.string,
           },
           {
             "progress",
-            color = { fg = highlights.string },
+            color = highlights.string,
           },
           {
             "location",
-            color = { fg = highlights.func },
+            color = highlights.func,
           },
         },
       },
