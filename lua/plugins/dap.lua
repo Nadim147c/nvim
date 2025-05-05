@@ -16,6 +16,7 @@ return {
         vim.keymap.set("n", "<leader>d" .. key, fn, { desc = "Dap " .. desc })
       end
 
+      -- stylua: ignore start
       map("B", function() dap.set_breakpoint(vim.fn.input "Breakpoint condition: ") end, "Breakpoint condition")
       map("b", function() dap.toggle_breakpoint() end, "Toggle Breakpoint")
       map("c", function() dap.continue() end, "Run/Continue")
@@ -34,20 +35,39 @@ return {
       map("s", function() dap.session() end, "Session")
       map("t", function() dap.terminate() end, "Terminate")
       map("w", function() require("dap.ui.widgets").hover() end, "Widgets")
+      -- stylua: ignore end
 
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
       -- setup dap config by VsCode launch.json file
       local vscode = require "dap.ext.vscode"
       local json = require "plenary.json"
-      vscode.json_decode = function(str) return vim.json.decode(json.json_strip_comments(str)) end
+      vscode.json_decode = function(str)
+        return vim.json.decode(json.json_strip_comments(str))
+      end
     end,
+  },
+
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    opts = {
+      enabled = true,
+      enabled_commands = true,
+      highlight_changed_variables = true,
+      highlight_new_as_changed = false,
+      show_stop_reason = true,
+      commented = false,
+      only_first_definition = true,
+      all_references = false,
+      clear_on_continue = false,
+    },
   },
 
   {
     "rcarriga/nvim-dap-ui",
     dependencies = "nvim-neotest/nvim-nio",
     event = "VeryLazy",
+    -- stylua: ignore
     keys = {
       { "<leader>du", function() require("dapui").toggle {} end, desc = "Dap UI" },
       { "<leader>de", function() require("dapui").eval() end, desc = "Dap Eval", mode = { "n", "v" } },
@@ -57,9 +77,12 @@ return {
       local dap = require "dap"
       local dapui = require "dapui"
       dapui.setup(opts)
+
+      -- stylua: ignore start
       dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open {} end
       dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close {} end
       dap.listeners.before.event_exited["dapui_config"] = function() dapui.close {} end
+      -- stylua: ignore end
     end,
   },
 
