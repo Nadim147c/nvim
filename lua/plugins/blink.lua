@@ -28,37 +28,15 @@ return {
 
           ["<Tab>"] = { "snippet_forward", "fallback" },
           ["<S-Tab>"] = { "snippet_backward", "fallback" },
+          -- stylua: ignore
           cmdline = {
-            ["<Up>"] = {
-              function()
-                cmp.select_prev { auto_insert = true }
-              end,
-              "fallback",
-            },
-            ["<C-p>"] = {
-              function()
-                cmp.select_prev { auto_insert = true }
-              end,
-              "fallback",
-            },
-            ["<Down>"] = {
-              function()
-                cmp.select_next { auto_insert = true }
-              end,
-              "fallback",
-            },
-            ["<C-n>"] = {
-              function()
-                cmp.select_next { auto_insert = true }
-              end,
-              "fallback",
-            },
+            ["<Up>"] = { function() cmp.select_prev { auto_insert = true } end, "fallback", },
+            ["<C-p>"] = { function() cmp.select_prev { auto_insert = true } end, "fallback", },
+            ["<Down>"] = { function() cmp.select_next { auto_insert = true } end, "fallback", },
+            ["<C-n>"] = { function() cmp.select_next { auto_insert = true } end, "fallback", },
           },
         },
-        appearance = {
-          use_nvim_cmp_as_default = true,
-          nerd_font_variant = "mono",
-        },
+        appearance = { nerd_font_variant = "mono" },
         snippets = { preset = "luasnip" },
         completion = {
           accept = { auto_brackets = { enabled = false } },

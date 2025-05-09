@@ -7,12 +7,11 @@ return {
     priority = 1000,
     config = true,
     opts = {
-      styles = {
-        transparency = true,
-      },
+      styles = { transparency = true },
       extend_background_behind_borders = true,
     },
     init = function()
+      vim.cmd.colorscheme "rose-pine"
       require("transparent").clear_prefix "lualine"
     end,
   },

@@ -1,5 +1,3 @@
-vim.cmd.colorscheme "rose-pine"
-
 if vim.g.transparent_enabled == nil then
   vim.g.transparent_enabled = true
 end
