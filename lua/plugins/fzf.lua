@@ -25,7 +25,9 @@ return {
       vim.keymap.set("n", "<leader>f" .. key, func, { desc = "fzf " .. desc })
     end
 
+    -- stylua: ignore start
     map("f", fzf.files, "files")
+    map("a", function() fzf.files { raw_cmd = "find" } end, "all files")
     map("b", fzf.buffers, "buffers")
     map("g", fzf.git_files, "git files")
     map("l", fzf.git_commits, "git commits")
@@ -34,8 +36,8 @@ return {
     map("s", fzf.grep_curbuf, "current buffer")
     map("v", fzf.highlights, "highlights")
     map("h", fzf.help_tags, "help")
-    -- stylua: ignore
     map("c", function() fzf.files { cwd = config_dir } end, "config files")
+    -- stylua: ignore end
   end,
 
   init = function()
