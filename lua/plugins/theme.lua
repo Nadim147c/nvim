@@ -1,19 +1,42 @@
 return {
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "catppuccin/nvim",
+    name = "catppuccin",
     dependencies = "xiyaowong/transparent.nvim",
-    lazy = false,
     priority = 1000,
-    config = true,
-    opts = {
-      styles = { transparency = true },
-      extend_background_behind_borders = true,
-    },
+    lazy = false,
     init = function()
-      vim.cmd.colorscheme "rose-pine"
-      require("transparent").clear_prefix "lualine"
+      vim.cmd.colorscheme "catppuccin-mocha"
+
+      local transparent = require "transparent"
+      transparent.clear_prefix "lualine"
     end,
+    opts = {
+      custom_highlights = function(colors)
+        return {
+          HighlightUrl = { fg = colors.blue },
+          Winbar = { fg = colors.sky },
+          WinbarSeparator = { fg = colors.red },
+          WinbarDir = { fg = colors.blue },
+        }
+      end,
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
+      transparent_background = true, -- disables setting the background color.
+      show_end_of_buffer = false,
+      term_colors = false,
+      dim_inactive = { enabled = false },
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        notify = false,
+        mini = {
+          enabled = true,
+          indentscope_color = "",
+        },
+      },
+    },
   },
 
   {
@@ -21,10 +44,9 @@ return {
     lazy = false,
     config = function()
       local transparent = require "transparent"
-      transparent.setup { extra_groups = { "NormalFloat", "NvimTreeNormal" } }
-      transparent.clear_prefix "lualine"
-      transparent.clear_prefix "fzf-lua"
-      transparent.clear_prefix "nvim-tree"
+      transparent.setup {
+        extra_groups = { "NormalFloat", "NvimTreeNormal" },
+      }
     end,
   },
 }

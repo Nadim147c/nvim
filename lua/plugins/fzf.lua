@@ -7,8 +7,8 @@ return {
     local fzf = require "fzf-lua"
     fzf.setup {
       winopts = {
-        height = 1,
-        width = 1,
+        height = 0.8,
+        width = 0.8,
         preview = {
           horizontal = "right:50%",
         },
