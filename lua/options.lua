@@ -1,3 +1,5 @@
+vim.cmd [[ set clipboard+=unnamedplus ]]
+
 if vim.g.transparent_enabled == nil then
   vim.g.transparent_enabled = true
 end
