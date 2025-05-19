@@ -12,6 +12,7 @@ return {
     "NeogitOrg/neogit",
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
+    keys = { "<leader>gg", "<CMD> Neogit <CR>", desc = "Open neogit" },
     config = true,
   },
   {
@@ -30,7 +31,9 @@ return {
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
-        local function opts(desc) return { buffer = bufnr, desc = "Gitsings " .. desc } end
+        local function opts(desc)
+          return { buffer = bufnr, desc = "Gitsings " .. desc }
+        end
 
         local map = vim.keymap.set
 

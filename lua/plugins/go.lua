@@ -15,10 +15,4 @@ return {
       },
     },
   },
-
-  {
-    "Jay-Madden/auto-fix-return.nvim",
-    ft = "go",
-    config = true,
-  },
 }
