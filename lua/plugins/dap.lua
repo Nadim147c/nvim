@@ -4,6 +4,7 @@ return {
     event = "VeryLazy",
     dependencies = {
       "rcarriga/nvim-dap-ui",
+      "mxsdev/nvim-dap-vscode-js",
       -- virtual text for the debugger
       "theHamsta/nvim-dap-virtual-text",
     },
@@ -44,6 +45,64 @@ return {
       local json = require "plenary.json"
       vscode.json_decode = function(str)
         return vim.json.decode(json.json_strip_comments(str))
+      end
+
+      local mason_pkgs = vim.fn.stdpath "data" .. "/mason/packages"
+
+      dap.adapters["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "node",
+          args = {
+            (mason_pkgs .. "/js-debug-adapter/js-debug/src/dapDebugServer.js"),
+            "${port}",
+          },
+        },
+      }
+      dap.adapters["pwa-bun"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "bun",
+          args = {
+            (mason_pkgs .. "/js-debug-adapter/js-debug/src/dapDebugServer.js"),
+            "${port}",
+          },
+        },
+      }
+
+      for _, language in ipairs { "typescript", "javascript" } do
+        dap.configurations[language] = {
+          {
+            name = "Launch (Bun)",
+            type = "pwa-bun",
+            request = "launch",
+            program = "${file}",
+            port = "${port}",
+            rootPath = "${workspaceFolder}",
+            cwd = "${workspaceFolder}",
+            sourceMaps = true,
+            skipFiles = { "<node_internals>/**" },
+            protocol = "inspector",
+            console = "integratedTerminal",
+          },
+          {
+            name = "Launch (Node)",
+            type = "pwa-node",
+            request = "launch",
+            program = "${file}",
+            port = "${port}",
+            rootPath = "${workspaceFolder}",
+            cwd = "${workspaceFolder}",
+            sourceMaps = true,
+            skipFiles = { "<node_internals>/**" },
+            protocol = "inspector",
+            console = "integratedTerminal",
+          },
+        }
       end
     end,
   },
@@ -92,8 +151,6 @@ return {
     event = "VeryLazy",
     cmd = { "DapInstall", "DapUninstall" },
     opts = {
-      -- Makes a best effort to setup the various debuggers with
-      -- reasonable debug configurations
       automatic_installation = true,
       handlers = {},
       ensure_installed = {},
