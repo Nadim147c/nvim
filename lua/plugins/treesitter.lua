@@ -10,7 +10,7 @@ return {
     },
     auto_install = true,
     prefer_git = true,
-    ensure_installed = { "lua" },
+    ensure_installed = { "lua", "gotag" },
     indent = {
       enable = true,
       disable = { "python" },
@@ -24,7 +24,7 @@ return {
           ["af"] = "@function.outer",
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
-          ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+          ["ic"] = "@class.inner",
         },
         selection_modes = {
           ["@parameter.outer"] = "v", -- charwise
@@ -37,5 +37,16 @@ return {
   },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
+
+    local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+    parser_config.gotag = {
+      install_info = {
+        url = vim.fn.stdpath "config" .. "/treesitter/gotag",
+        files = { "src/parser.c" },
+        generate_requires_npm = false,
+        requires_generate_from_grammar = true,
+      },
+    }
   end,
 }
