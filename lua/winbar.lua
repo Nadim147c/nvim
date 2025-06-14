@@ -1,13 +1,5 @@
 -- Source: https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/winbar.lua
 
-local special_dirs = {
-  HOME = vim.env.HOME,
-  CONFIG = vim.env.XDG_CONFIG_HOME,
-  GIT = vim.env.HOME .. "/git",
-  NVIM = vim.env.HOME .. "/git/nvim",
-  DOTFILES = vim.env.HOME .. "/git/dotfiles",
-}
-
 local M = {}
 
 --- Window bar that shows the current file path (in a fancy way).

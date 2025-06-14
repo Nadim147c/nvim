@@ -4,7 +4,11 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    image = { enabled = false },
+    image = {
+      enabled = true,
+      inline = true,
+      float = true,
+    },
     picker = { enabled = false },
     bigfile = { enabled = true },
     dashboard = { enabled = true },
