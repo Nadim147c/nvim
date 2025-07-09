@@ -10,4 +10,11 @@ return {
       },
     },
   },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      local defaults = require "configs/lsp"
+      vim.lsp.config("*", defaults)
+    end,
+  },
 }
