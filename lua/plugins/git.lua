@@ -7,7 +7,13 @@ local function visual_stage()
 end
 
 return {
-  { "tpope/vim-fugitive", event = "VeryLazy" },
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy",
+    config = function()
+      vim.keymap.set("n", "<leader>g", ":tab Git", { desc = "F" })
+    end,
+  },
   {
     "NeogitOrg/neogit",
     event = "VeryLazy",

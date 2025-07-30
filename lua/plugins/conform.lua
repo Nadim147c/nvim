@@ -47,6 +47,7 @@ return {
         sh = { "shfmt" },
         sql = { "sql_formatter" },
         nix = { "alejandra" },
+        make = {},
         c = { "clang_format" },
         ["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
       },

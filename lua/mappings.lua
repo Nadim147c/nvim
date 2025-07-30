@@ -26,3 +26,4 @@ vim.keymap.set({ "n", "v" }, "<leader>lR", ":Lazy reload", { desc = "Reload a la
 vim.keymap.set({ "n", "v" }, "<leader>lS", ":Lazy sync", { desc = "Sync all lazy plugin" })
 
 vim.keymap.set("n", "<leader>u", "<CMD> UndotreeToggle <CR>", { desc = "Sync all lazy plugin" })
+vim.keymap.set("n", "<leader>v", "<C-V>", { desc = "Block selection mode" })
