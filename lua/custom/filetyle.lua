@@ -11,7 +11,7 @@ vim.filetype.add {
     [".*/fontconfig/font.conf"] = "xml",
     [".*/uwsm/env.*"] = "sh",
     [".*/.gitconfig.*"] = "gitconfig",
-    [".*/.config/git/.*"] = "gitconfig",
+    [".*/.?config/git/.*"] = "gitconfig",
   },
   filename = {
     [".prettierrc"] = "yaml",
