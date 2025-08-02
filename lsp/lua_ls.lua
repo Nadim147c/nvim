@@ -1,18 +1,21 @@
 return {
   settings = {
     Lua = {
-      runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+      runtime = {
+        version = "LuaJIT",
+      },
       diagnostics = {
-        -- Don't analyze whole workspace, as it consumes too much CPU and RAM
-        workspaceDelay = -1,
+        globals = {
+          "vim",
+          "require",
+        },
       },
       workspace = {
-        -- Don't analyze code from submodules
-        ignoreSubmodules = true,
-        -- Add Neovim's methods for easier code writing
-        library = { vim.env.VIMRUNTIME },
+        library = vim.api.nvim_get_runtime_file("", true),
       },
-      telemetry = { enable = false },
+      telemetry = {
+        enable = false,
+      },
     },
   },
 }

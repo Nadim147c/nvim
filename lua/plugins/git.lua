@@ -15,13 +15,6 @@ return {
     end,
   },
   {
-    "NeogitOrg/neogit",
-    event = "VeryLazy",
-    dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
-    keys = { "<leader>gg", "<CMD> Neogit <CR>", desc = "Open neogit" },
-    config = true,
-  },
-  {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
