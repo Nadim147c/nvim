@@ -6,13 +6,6 @@ return {
     keys = { "<leader><F5>", "<CMD> UndotreeToggle <CR>", desc = "Toggle undo tree" },
   },
   {
-    "rainbowhxch/accelerated-jk.nvim",
-    keys = {
-      { "j", "<Plug>(accelerated_jk_gj)", desc = "Accelerated down movement" },
-      { "k", "<Plug>(accelerated_jk_gk)", desc = "Accelerated up movement" },
-    },
-  },
-  {
     "numToStr/Comment.nvim",
     init = function()
       local function comment()

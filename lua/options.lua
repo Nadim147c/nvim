@@ -13,6 +13,7 @@ vim.opt.fillchars:append { eob = " " }
 
 vim.o.cursorlineopt = "number"
 vim.o.cursorline = true
+vim.o.winborder = "rounded"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -39,3 +40,4 @@ vim.opt.colorcolumn = "100"
 vim.opt.termguicolors = true
 
 vim.diagnostic.config { float = { border = "rounded" } }
+vim.o.statusline = nil

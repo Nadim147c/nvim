@@ -7,9 +7,10 @@ return {
     lazy = false,
     init = function()
       vim.cmd.colorscheme "catppuccin-mocha"
-
       local transparent = require "transparent"
       transparent.clear_prefix "lualine"
+      transparent.clear_prefix "SnacksPicker"
+      transparent.clear_prefix "StatusLine"
     end,
     opts = {
       custom_highlights = function(colors)
@@ -45,7 +46,16 @@ return {
     config = function()
       local transparent = require "transparent"
       transparent.setup {
-        extra_groups = { "NormalFloat", "NvimTreeNormal" },
+        extra_groups = {
+          "NormalFloat",
+          "FloatBorder",
+          "NvimTreeNormal",
+          "MiniStatuslineDevinfo",
+          "MiniStatuslineInactive",
+          "MiniStatuslineFilename",
+          "MiniStatuslineFileinfo",
+          "MiniStatuslineModeOther",
+        },
       }
     end,
   },
