@@ -39,7 +39,6 @@ return {
       },
     },
   },
-
   {
     "xiyaowong/transparent.nvim",
     lazy = false,
@@ -50,6 +49,10 @@ return {
           "NormalFloat",
           "FloatBorder",
           "NvimTreeNormal",
+          "MiniFilesBorder",
+          "MiniFilesBorderModified",
+          "MiniFilesTitleFocused",
+          "MiniFilesTitle",
           "MiniStatuslineDevinfo",
           "MiniStatuslineInactive",
           "MiniStatuslineFilename",
