@@ -7,7 +7,6 @@ return {
     image = {
       enabled = true,
       inline = true,
-      float = true,
     },
     picker = { enabled = false },
     bigfile = { enabled = true },
