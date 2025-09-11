@@ -39,5 +39,9 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.termguicolors = true
 
-vim.diagnostic.config { float = { border = "rounded" } }
+vim.diagnostic.config {
+  virtual_text = true,
+  float = { border = "rounded" },
+}
+
 vim.o.statusline = nil
