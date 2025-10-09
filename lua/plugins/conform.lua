@@ -47,10 +47,9 @@ return {
         sh = { "shfmt" },
         sql = { "sql_formatter" },
         nix = { "alejandra" },
-        make = {},
         c = { "clang_format" },
-        ["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
       },
+      lsp_format = "last",
       formatters = {
         shfmt = { extra_args = { "-i", "2", "-ci", "-bn" } },
         biome = {
