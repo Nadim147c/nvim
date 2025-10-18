@@ -39,7 +39,7 @@ return {
         graphql = prettier_formatter,
         liquid = prettier_formatter,
         yaml = prettier_formatter,
-        go = { "gofumpt", "gofmt", stop_after_first = true },
+        go = { "golines", "gofumpt" },
         lua = { "stylua" },
         python = { "isort", "ruff_format" },
         zsh = { "shfmt" },
@@ -51,6 +51,18 @@ return {
       },
       lsp_format = "last",
       formatters = {
+        golines = {
+          cwd = require("conform.util").root_file { ".editorconfig", "go.mod" },
+          require_cwd = true,
+          prepend_args = function(_, ctx)
+            local textwidth = vim.api.nvim_get_option_value("textwidth", { buf = ctx.buf })
+            if textwidth == 0 then
+              return {}
+            end
+            return { "--max-len", tostring(textwidth) }
+          end,
+          args = { "--shorten-comments" },
+        },
         shfmt = { extra_args = { "-i", "2", "-ci", "-bn" } },
         biome = {
           args = {
