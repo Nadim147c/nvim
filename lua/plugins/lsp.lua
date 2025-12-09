@@ -8,9 +8,14 @@ return {
       vim.lsp.config("*", defaults)
 
       vim.lsp.config("qmlls", { cmd = { "qmlls6", "-E" } })
-      vim.lsp.enable "qmlls"
-      vim.lsp.enable "nixd"
-      vim.lsp.enable "lua_ls"
+      vim.lsp.enable {
+        "qmlls",
+        "nixd",
+        "lua_ls",
+        "gopls",
+        "nushell",
+        "nixd",
+      }
     end,
   },
 }
