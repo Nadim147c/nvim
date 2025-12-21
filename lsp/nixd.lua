@@ -17,9 +17,6 @@ local nixd_settings = {
       nixpkgs = {
         expr = "import <nixpkgs> { }",
       },
-      formatting = {
-        command = { "alejandra" },
-      },
       options = {
         nixos = {
           expr = string.format(

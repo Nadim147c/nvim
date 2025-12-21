@@ -46,7 +46,7 @@ return {
         bash = { "shfmt" },
         sh = { "shfmt" },
         sql = { "sql_formatter" },
-        nix = { "alejandra" },
+        nix = { "nixfmt" },
         c = { "clang_format" },
       },
       lsp_format = "last",
