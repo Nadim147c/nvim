@@ -7,7 +7,6 @@ return {
       local defaults = require "configs/lsp"
       vim.lsp.config("*", defaults)
 
-      vim.lsp.config("qmlls", { cmd = { "qmlls6", "-E" } })
       vim.lsp.enable {
         "qmlls",
         "nixd",
@@ -15,6 +14,7 @@ return {
         "gopls",
         "nushell",
         "nixd",
+        "qmlls",
       }
     end,
   },
