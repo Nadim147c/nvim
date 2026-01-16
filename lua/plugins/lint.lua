@@ -8,6 +8,7 @@ return {
       linters_by_ft = {
         fish = { "fish" },
         go = { "revive", "golangcilint" },
+        nix = { "statix" },
       },
       ---@type table<string,table>
       linters = {
