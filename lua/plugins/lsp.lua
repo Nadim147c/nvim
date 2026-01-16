@@ -8,13 +8,17 @@ return {
       vim.lsp.config("*", defaults)
 
       vim.lsp.enable {
-        "qmlls",
-        "nixd",
-        "lua_ls",
+        "cssls",
+        "emmet_language_server",
         "gopls",
-        "nushell",
+        "just",
+        "lua_ls",
         "nixd",
+        "nushell",
         "qmlls",
+        "tailwindcss",
+        "ts_ls",
+        "tsgo",
       }
     end,
   },
