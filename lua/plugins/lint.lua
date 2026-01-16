@@ -7,10 +7,20 @@ return {
       events = { "BufWritePost", "BufReadPost", "InsertLeave" },
       linters_by_ft = {
         fish = { "fish" },
-        go = { "revive" },
+        go = { "revive", "golangcilint" },
       },
       ---@type table<string,table>
       linters = {
+        golangcilint = {
+          condition = function(ctx)
+            return vim.fs.find({
+              ".golangci.yml",
+              ".golangci.yaml",
+              ".golangci.json",
+              ".golangci.toml",
+            }, { path = ctx.filename, upward = true })[1]
+          end,
+        },
         revive = {
           condition = function(ctx)
             return vim.fs.find({ "revive.toml" }, { path = ctx.filename, upward = true })[1]
