@@ -39,7 +39,7 @@ return {
         graphql = prettier_formatter,
         liquid = prettier_formatter,
         yaml = prettier_formatter,
-        go = { "golines", "gofumpt" },
+        go = { "gofumpt" },
         lua = { "stylua" },
         python = { "isort", "ruff_format" },
         zsh = { "shfmt" },
