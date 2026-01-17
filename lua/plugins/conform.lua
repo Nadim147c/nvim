@@ -45,7 +45,7 @@ return {
         zsh = { "shfmt" },
         bash = { "shfmt" },
         sh = { "shfmt" },
-        sql = { "sql_formatter" },
+        -- sql = { "sql_formatter" },
         nix = { "nixfmt" },
         c = { "clang_format" },
       },
