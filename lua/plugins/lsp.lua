@@ -11,6 +11,7 @@ return {
         "cssls",
         "emmet_language_server",
         "gopls",
+        "harper_ls",
         "just",
         "lua_ls",
         "nixd",
