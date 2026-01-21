@@ -20,6 +20,7 @@ return {
         "tailwindcss",
         "ts_ls",
         "tsgo",
+        "golangci_lint_ls",
       }
     end,
   },

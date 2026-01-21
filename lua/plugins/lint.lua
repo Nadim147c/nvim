@@ -7,7 +7,7 @@ return {
       events = { "BufWritePost", "BufReadPost", "InsertLeave" },
       linters_by_ft = {
         fish = { "fish" },
-        go = { "revive", "golangcilint" },
+        go = { "revive" },
         nix = { "statix" },
       },
       ---@type table<string,table>
