@@ -6,6 +6,7 @@ return {
     config = function()
       local defaults = require "configs/lsp"
       vim.lsp.config("*", defaults)
+      vim.lsp.config("clangd", defaults)
 
       vim.lsp.enable {
         "cssls",
@@ -21,6 +22,7 @@ return {
         "ts_ls",
         "tsgo",
         "golangci_lint_ls",
+        "clangd",
       }
     end,
   },
